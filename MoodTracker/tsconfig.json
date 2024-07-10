@@ -1,7 +1,9 @@
 {
-  "compilerOptions": {
-    "skipLibCheck": false,
-  },
+  // "compilerOptions": {
+  //   "skipLibCheck": false,
+  //   "noUnusedLocals": false,
+  //   "noUnusedParameters": false,
+  // },
   
   "extends": "@react-native/typescript-config/tsconfig.json",
 }
