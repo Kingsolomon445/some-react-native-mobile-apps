@@ -1,32 +1,16 @@
-import React, {useCallback, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 
 import MoodPicker from '../components/MoodPicker';
 
-import {MoodOptionType, MoodOptionWithTimestamp} from '../types';
-import MoodItemRow from '../components/MoodItemRow';
+import {useAppContext} from '../App.provider';
 
 const Home: React.FC = () => {
-  const [moodList, setMoodList] = useState<MoodOptionWithTimestamp[]>([]);
+  const appContext = useAppContext();
 
-  const handleSelectMood = useCallback(
-    (selectedMood: MoodOptionType) => {
-      const newMood = {mood: selectedMood, timestamp: Date.now()};
-      const newMoodList = [...moodList, newMood];
-      console.log(moodList);
-      console.log(newMoodList);
-      setMoodList(newMoodList);
-    },
-    [moodList],
-  );
   return (
     <View style={styles.container}>
-      <MoodPicker handleSelectMood={handleSelectMood} />
-      <View style={styles.moodItemRowListContainer}>
-        {moodList.map(item => (
-          <MoodItemRow moodItem={item} key={item.timestamp} />
-        ))}
-      </View>
+      <MoodPicker handleSelectMood={appContext.updateMoodList} />
     </View>
   );
 };
@@ -34,10 +18,6 @@ const Home: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
-  },
-  moodItemRowListContainer: {
-    alignContent: 'center',
     justifyContent: 'center',
   },
 });

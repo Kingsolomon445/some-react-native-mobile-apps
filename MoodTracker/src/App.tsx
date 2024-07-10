@@ -1,12 +1,17 @@
 import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
+import React, {useState} from 'react';
 import BottomTabsNavigator from './screens/BottomTabs.navigator';
+import {AppProvider} from './App.provider';
+
+import {MoodOptionWithTimestamp} from './types';
 
 const App: React.FC = () => {
   return (
-    <NavigationContainer>
-      <BottomTabsNavigator />
-    </NavigationContainer>
+    <AppProvider>
+      <NavigationContainer>
+        <BottomTabsNavigator />
+      </NavigationContainer>
+    </AppProvider>
   );
 };
 
