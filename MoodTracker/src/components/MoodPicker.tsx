@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 
-import {View, FlatList, Text, StyleSheet, Pressable} from 'react-native';
+import {View, FlatList, Text, StyleSheet, Pressable, Image} from 'react-native';
 import {MoodOptionType} from '../types';
 import {theme} from '../theme';
+
+const imageSrc = require('../../assets/butterflies.png');
 
 const moodOptions = [
   {emoji: '🧑‍💻', description: 'studious'},
@@ -23,6 +25,24 @@ const initialMood: MoodOptionType = {
 
 const MoodPicker: React.FC<MoodPickerProps> = ({handleSelectMood}) => {
   const [pickedMood, setPickedMood] = useState<MoodOptionType>(initialMood);
+  const [hasSelected, setHasSelected] = useState(false);
+
+  if (hasSelected) {
+    return (
+      <View style={styles.container}>
+        <Image source={imageSrc} />
+        <Pressable style={styles.button} onPress={() => setHasSelected(false)}>
+          <Text style={styles.buttonText}>Choose another</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  const onChoose = () => {
+    pickedMood?.emoji ? handleSelectMood(pickedMood) : undefined;
+    setPickedMood(initialMood);
+    setHasSelected(true);
+  };
 
   return (
     <View style={styles.container}>
@@ -50,12 +70,7 @@ const MoodPicker: React.FC<MoodPickerProps> = ({handleSelectMood}) => {
           </View>
         )}
       />
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          pickedMood?.emoji ? handleSelectMood(pickedMood) : undefined;
-          setPickedMood(initialMood);
-        }}>
+      <Pressable style={styles.button} onPress={onChoose}>
         <Text style={styles.buttonText}>Choose</Text>
       </Pressable>
     </View>
@@ -64,6 +79,7 @@ const MoodPicker: React.FC<MoodPickerProps> = ({handleSelectMood}) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'rgba(0,0,0,0.2)',
     borderColor: theme.colorPurple,
     borderRadius: 20,
     paddingVertical: 20,
@@ -71,12 +87,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     rowGap: 20,
     borderWidth: 2,
-    // flexShrink: 1,
+    height: 250,
   },
   title: {
     fontWeight: 'bold',
     fontSize: 20,
-    color: theme.colorPurple,
+    color: theme.colorWhite,
   },
   moodContainer: {
     paddingHorizontal: 15,
@@ -98,6 +114,7 @@ const styles = StyleSheet.create({
   },
   emoji: {
     fontSize: 20,
+    fontWeight: 'bold',
     textAlign: 'center',
     padding: 5,
   },
