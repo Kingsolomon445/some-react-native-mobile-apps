@@ -9,13 +9,16 @@ const History: React.FC = () => {
 
   return (
     <ScrollView style={styles.container}>
-      {appContext.moodList.map(item => (
-        <MoodItemRow
-          moodItem={item}
-          key={item.timestamp}
-          handDeleteMood={appContext.deleteMood}
-        />
-      ))}
+      {appContext.moodList
+        .slice()
+        .reverse()
+        .map(item => (
+          <MoodItemRow
+            moodItem={item}
+            key={item.timestamp}
+            handDeleteMood={appContext.deleteMood}
+          />
+        ))}
     </ScrollView>
   );
 };

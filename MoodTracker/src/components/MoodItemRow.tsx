@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Pressable} from 'react-native';
+import {StyleSheet, Text, View, Pressable, LayoutAnimation} from 'react-native';
 import {MoodOptionWithTimestamp} from '../types';
 import React from 'react';
 
@@ -13,7 +13,7 @@ type MoodItemProps = {
 
 const MoodItemRow: React.FC<MoodItemProps> = ({moodItem, handDeleteMood}) => {
   const onDelete = () => {
-    console.log('Deleted Mood');
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     handDeleteMood(moodItem);
   };
   return (
