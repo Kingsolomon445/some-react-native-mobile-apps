@@ -11,6 +11,9 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
 
+import com.facebook.react.bridge.JSIModulePackage // <- add
+import com.swmansion.reanimated.ReanimatedJSIModulePackage // <- add
+
 class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost =
@@ -22,6 +25,10 @@ class MainApplication : Application(), ReactApplication {
             }
 
         override fun getJSMainModuleName(): String = "index"
+
+        override fun getJSIModulePackage(): JSIModulePackage {
+          return ReanimatedJSIModulePackage() // <- add
+        }
 
         override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 

@@ -68,27 +68,6 @@ const MoodItemRow: React.FC<MoodItemProps> = ({moodItem, handDeleteMood}) => {
       }
     })
     .runOnJS(true);
-  // .minDistance(1)
-  // .onStart(() => {
-  //   prevTranslationX.value = translationX.value;
-  //   prevTranslationY.value = translationY.value;
-  // })
-  // .onUpdate(event => {
-  //   const maxTranslateX = width / 2 - 50;
-  //   const maxTranslateY = height / 2 - 50;
-
-  //   translationX.value = clamp(
-  //     prevTranslationX.value + event.translationX,
-  //     -maxTranslateX,
-  //     maxTranslateX,
-  //   );
-  //   translationY.value = clamp(
-  //     prevTranslationY.value + event.translationY,
-  //     -maxTranslateY,
-  //     maxTranslateY,
-  //   );
-  // })
-  // .runOnJS(true);
   return (
     <GestureHandlerRootView>
       <GestureDetector gesture={pan}>
