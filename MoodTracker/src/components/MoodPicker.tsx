@@ -39,9 +39,11 @@ const MoodPicker: React.FC<MoodPickerProps> = ({handleSelectMood}) => {
   }
 
   const onChoose = () => {
-    pickedMood?.emoji ? handleSelectMood(pickedMood) : undefined;
-    setPickedMood(initialMood);
-    setHasSelected(true);
+    if (pickedMood && pickedMood.emoji) {
+      handleSelectMood(pickedMood);
+      setPickedMood(initialMood);
+      setHasSelected(true);
+    }
   };
 
   return (
