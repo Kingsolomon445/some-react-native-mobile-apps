@@ -5,9 +5,6 @@ import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
 
-import com.facebook.react.ReactRootView;
-import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
-
 import android.os.Bundle;
 
 class MainActivity : ReactActivity() {
@@ -17,14 +14,6 @@ class MainActivity : ReactActivity() {
    * rendering of the component.
    */
   override fun getMainComponentName(): String = "MoodTracker"
-
-  override fun createReactActivityDelegate(): ReactActivityDelegate {
-        return object : ReactActivityDelegate(this, mainComponentName) {
-            override fun createRootView(): ReactRootView {
-                return RNGestureHandlerEnabledRootView(this@MainActivity)
-            }
-        }
-    }
 
   /**
    * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]
