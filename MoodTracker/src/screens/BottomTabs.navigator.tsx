@@ -1,6 +1,4 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React from 'react';
-import {Text} from 'react-native';
 import Home from './Home.screen';
 import History from './History.screen';
 import Analytics from './Analytics.screen';

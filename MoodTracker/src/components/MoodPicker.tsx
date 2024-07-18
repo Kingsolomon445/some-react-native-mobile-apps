@@ -90,9 +90,9 @@ const styles = StyleSheet.create({
     height: 250,
   },
   title: {
-    fontWeight: 'bold',
     fontSize: 20,
     color: theme.colorWhite,
+    fontFamily: theme.fontFamilyBold,
   },
   moodContainer: {
     paddingHorizontal: 15,
@@ -110,12 +110,12 @@ const styles = StyleSheet.create({
   },
   pickedMoodText: {
     color: theme.colorPurple,
-    fontWeight: 'bold',
+    fontFamily: theme.fontFamilyBold,
   },
   emoji: {
     fontSize: 20,
-    fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: theme.fontFamilyBold,
     padding: 5,
   },
   button: {
@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     color: theme.colorWhite,
+    fontFamily: theme.fontFamilyBold,
   },
 });
 

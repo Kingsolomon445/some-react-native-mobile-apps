@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, View, ImageBackground} from 'react-native';
+import {StyleSheet, ImageBackground} from 'react-native';
 
 import MoodPicker from '../components/MoodPicker';
 

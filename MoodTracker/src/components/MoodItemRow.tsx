@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import {MoodOptionType, MoodOptionWithTimestamp} from '../types';
+import {StyleSheet, Text, View, Pressable} from 'react-native';
+import {MoodOptionWithTimestamp} from '../types';
 import React from 'react';
 
 import {format} from 'date-fns';
@@ -8,9 +8,14 @@ import {theme} from '../theme';
 
 type MoodItemProps = {
   moodItem: MoodOptionWithTimestamp;
+  handDeleteMood: (mood: MoodOptionWithTimestamp) => void;
 };
 
-const MoodItemRow: React.FC<MoodItemProps> = ({moodItem}) => {
+const MoodItemRow: React.FC<MoodItemProps> = ({moodItem, handDeleteMood}) => {
+  const onDelete = () => {
+    console.log('Deleted Mood');
+    handDeleteMood(moodItem);
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.emoji}>{moodItem.mood.emoji}</Text>
@@ -20,6 +25,9 @@ const MoodItemRow: React.FC<MoodItemProps> = ({moodItem}) => {
           {format(new Date(moodItem.timestamp), "dd MMM, yyyy 'at' h:mmaaa")}
         </Text>
       </View>
+      <Pressable style={styles.button} onPress={onDelete}>
+        <Text style={styles.buttonText}>Delete</Text>
+      </Pressable>
     </View>
   );
 };
@@ -28,7 +36,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     columnGap: 20,
-    // alignContent: 'center',
+    alignContent: 'center',
     paddingHorizontal: 5,
     paddingVertical: 15,
     marginVertical: 10,
@@ -36,26 +44,34 @@ const styles = StyleSheet.create({
   },
   emoji: {
     fontSize: 30,
-    fontWeight: 'bold',
+    fontFamily: theme.fontFamilyBold,
     textAlign: 'center',
   },
   description: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontSize: 25,
+    flex: 1,
+    fontFamily: theme.fontFamilyBold,
+    textAlign: 'left',
     color: theme.colorPurple,
   },
   timeStampContainer: {
     flexDirection: 'row',
-    flexGrow: 1,
+    alignItems: 'center',
     justifyContent: 'flex-end',
   },
   timeStampText: {
     fontSize: 15,
-    fontWeight: 'bold',
-    fontStyle: 'italic',
     textAlign: 'center',
+    fontFamily: theme.fontFamilyBold,
     color: theme.colorLavender,
+  },
+  button: {
+    justifyContent: 'center',
+    paddingRight: 5,
+  },
+  buttonText: {
+    color: theme.colorBlue,
+    fontFamily: theme.fontFamilyLight,
   },
 });
 
