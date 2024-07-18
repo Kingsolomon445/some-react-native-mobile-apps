@@ -149,3 +149,5 @@ const styles = StyleSheet.create({
 });
 
 export default MoodPicker;
+
+// Added `add_definitions(-Wno-deprecated-this-capture)` near top of CMakeList file for react-native-reanimated node modules to ignore compiler warning during build
