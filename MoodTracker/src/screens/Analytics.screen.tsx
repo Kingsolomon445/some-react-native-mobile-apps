@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Dimensions, StyleSheet} from 'react-native';
+import {View, Dimensions, StyleSheet, Text} from 'react-native';
 import {useAppContext} from '../App.provider';
 import {MoodOptionWithTimestamp} from '../types';
 import groupBy from 'lodash/groupBy';
@@ -22,6 +22,13 @@ const CHARTCONFIG = {
 const Analytics: React.FC = () => {
   const appContext = useAppContext();
 
+  if (!appContext.moodList.length) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>No Mood To Visualize</Text>
+      </View>
+    );
+  }
   const groupByEmoji = (mood: MoodOptionWithTimestamp) => {
     console.log(`${mood.mood.description} ${mood.mood.emoji}`);
     return `${mood.mood.description}${mood.mood.emoji}`;
@@ -67,6 +74,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+  },
+  title: {
+    fontFamily: theme.fontFamilyBold,
+    fontSize: 25,
+    color: theme.colorLavender,
+    textAlign: 'center',
   },
 });
 
